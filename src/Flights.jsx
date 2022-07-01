@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import { DateTime } from 'luxon'
 import DropdownDep from "./DropdownDep";
 import DropdownArr from "./DropdownArr";
-
+import ButtonPre from "./ButtonPre";
+import ButtonNext from "./ButtonNext";
 
 export default function Flights() {
 
@@ -10,6 +11,7 @@ export default function Flights() {
     const [dataLoaded, setDataLoaded] = useState(false)
     const [departure, setDeparture] = useState("PRG")
     const [arrival, setArrival] = useState("VLC")
+    const [results, setResults] = useState([])
 
     const [offset, setOffset] = useState(0);
     const [limit, setLimit] = useState(5);
@@ -22,7 +24,8 @@ export default function Flights() {
         const data = await resp.json();
         setFlights(data.data);
         setDataLoaded(true);
-        console.log(data.data)
+        setResults(data)
+        // console.log(data)
     };
 
     useEffect(() => {
@@ -49,9 +52,10 @@ export default function Flights() {
                             </ div>))}
                     </div>) : (<h1>Sorry, no flight is currently avaiable.</h1>)
                 : <h1>Data loading..</h1>}
+            <ButtonPre offset={offset} limit={limit} setOffset={setOffset} />
+            <ButtonNext offset={offset} limit={limit} setOffset={setOffset} flights={flights} results={results} />
 
-        <button onClick={() => setOffset(offset === 0 ? offset : offset - limit)}>Previous flights</button>
-        <button onClick={() => setOffset(offset + limit)}>Next flights</button>
+
         </>
 
     )
