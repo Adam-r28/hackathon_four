@@ -46,7 +46,7 @@ export default function Flights() {
 
             {dataLoaded ?
                 (!!flights.length) ? (
-                    <div>
+                    <div className="container__cards">
                         {flights.map((flight, i) => (
 
 

@@ -3,6 +3,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: white;
 
 }
 
@@ -46,21 +47,30 @@
   margin: 3%;
 }
 
+.container__cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: stretch;
 
+}
 
 .flight__card {
   display: flex;
   flex-direction: column;
   padding: 20px;
-  margin: 5px;
+  margin: 30px;
   border-radius: 8px;
     box-shadow: 0 2px 4px 0 rgb(0 0 0 / 30%);
     text-align: left;
+  max-width: 25%;
+  /* background-color: #67a3fc; */
+  background-color: white;
 }
 
-.flight__card:nth-child(odd) {
+/* .flight__card:nth-child(odd) {
   background-color: #67a3fc;
-}
+} */
 
 .button__container {
   display: flex;
