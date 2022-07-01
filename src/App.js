@@ -5,7 +5,10 @@ import Flights from './Flights';
 function App() {
   return (
     <div className="App">
+      
       <Flights />
+
+
     </div>
   );
 }

@@ -5,6 +5,7 @@ import DropdownArr from "./DropdownArr";
 import ButtonPre from "./ButtonPre";
 import ButtonNext from "./ButtonNext";
 
+
 export default function Flights() {
 
     const [flights, setFlights] = useState([]);
@@ -46,14 +47,17 @@ export default function Flights() {
                         {flights.map((flight, i) => (
                             <div className="flight__card" key={flight.id}>
                                 <h1>From: {flight.cityFrom} To: {flight.cityTo}</h1><br />
-                                <h3>Time of departure: {flight.dTime}</h3>
-                                <h3>Time of arrival: {flight.aTime}</h3>
+                                <h3>Time of departure: {DateTime.fromMillis(flight.dTime * 1000).toFormat('hh:mm')
+}</h3>
+                                <h3>Time of arrival: {DateTime.fromMillis(flight.aTime * 1000).toFormat('hh:mm')
+}</h3>
                                 <h3>Price: {flight.price} €</h3>
                             </ div>))}
                     </div>) : (<h1>Sorry, no flight is currently avaiable.</h1>)
                 : <h1>Data loading..</h1>}
             <ButtonPre offset={offset} limit={limit} setOffset={setOffset} />
             <ButtonNext offset={offset} limit={limit} setOffset={setOffset} flights={flights} results={results} />
+            
 
 
         </>
