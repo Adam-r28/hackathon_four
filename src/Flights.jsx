@@ -11,7 +11,10 @@ export default function Flights() {
     const [departure, setDeparture] = useState("PRG")
     const [arrival, setArrival] = useState("VLC")
 
-    const url = `https://api.skypicker.com/flights?fly_from=${departure}&fly_to=${arrival}&limit=5&date_from=1/8/2022&partner=data4youcbp202106`;
+    const [offset, setOffset] = useState(0);
+    const [limit, setLimit] = useState(5);
+
+    const url = `https://api.skypicker.com/flights?fly_from=${departure}&fly_to=${arrival}&offset=${offset}&limit=${limit}&date_from=1/8/2022&partner=data4youcbp202106`;
 
 
     const fetchData = async () => {
@@ -24,9 +27,9 @@ export default function Flights() {
 
     useEffect(() => {
         fetchData();
-    }, [departure, arrival]);
+    }, [departure, arrival, offset, limit]);
 
-    console.log(flights)
+    // console.log(flights)
 
     return (
         <>
@@ -46,6 +49,10 @@ export default function Flights() {
                             </ div>))}
                     </div>) : (<h1>Sorry, no flight is currently avaiable.</h1>)
                 : <h1>Data loading..</h1>}
+
+        <button onClick={() => setOffset(offset === 0 ? offset : offset - limit)}>Previous flights</button>
+        <button onClick={() => setOffset(offset + limit)}>Next flights</button>
         </>
+
     )
 }
